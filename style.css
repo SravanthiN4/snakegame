@@ -1,0 +1,47 @@
+body{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
+.container {
+    
+    width:500px;
+    height:500px;
+    border:1px solid black;
+}
+
+.redbox {
+    width:20px;
+    margin:auto;
+    height:20px;
+    border:1px solid black;
+    margin-top:10px;
+    text-align:center;
+    vertical-align: middle;
+    background-color: darkblue;
+}
+
+.bluebox {
+    width:20px;
+    margin:auto;
+    height:20px;
+    border:1px solid black;
+    margin-top:10px;
+    text-align:center;
+    vertical-align: middle;
+    background-color: red;
+}
+
+.header {
+    text-align:center;
+    color: yellow;
+    font-size: xx-large;
+    background-color:lightcoral;
+}
+
+.middle {
+    line-height:60px;
+    height:80px;
+}
