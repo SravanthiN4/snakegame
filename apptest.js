@@ -15,7 +15,8 @@
 
 let size = 8;
 let direction;
-let x = 0,y = 1;
+let x = 0,
+	y = 1;
 let snake = [];
 let apple = {};
 
@@ -29,7 +30,7 @@ function drawBoard() {
 	for (let i = 0; i < size; i++) {
 		let row = document.createElement('tr');
 		//console.log(row);
-	for (let j = 0; j < size; j++) {
+		for (let j = 0; j < size; j++) {
 			let cell = document.createElement('td');
 			row.appendChild(cell);
 		}
@@ -38,24 +39,19 @@ function drawBoard() {
 }
 drawBoard();
 
-//RESET 
+//RESET
 
 //START BUTTON
 startButton.addEventListener('click', function(event) {
 	drawBoard();
-  	createSnake();
+	createSnake();
 	createFood();
 	startTimer();
-	
 });
-
-
 
 //CREATE SNAKE
 function createSnake() {
-	snake = [ 
-		[ size / 2, size / 2  ] 
-	];
+	snake = [ [ size / 2, size / 2 ] ];
 	drawSnake();
 }
 function drawSnake() {
@@ -66,15 +62,14 @@ function drawSnake() {
 
 function createFood() {
 	apple = {
-		x: Math.abs(Math.floor(Math.random() * size-1)),
-		y: Math.abs(Math.floor(Math.random() * size-1))
+		x: Math.abs(Math.floor(Math.random() * size - 1)),
+		y: Math.abs(Math.floor(Math.random() * size - 1))
 	};
 	drawFood();
 }
 
 function drawFood() {
 	board.rows[apple['y']].cells[apple['x']].style.backgroundColor = 'red';
-	
 }
 
 //Function to make sure Snake moves
@@ -86,21 +81,17 @@ function startTimer() {
 	}, 2000);
 }
 
-
 function move() {
-	let nextHead = [snake[0][x], snake[0][y]];
-	
-	if(!snake[snake.length-1]) {
-	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
+	let nextHead = [ snake[0][x], snake[0][y] ];
+
+	if (!snake[snake.length - 1]) {
+		board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 	}
 
-	console.log("snakelength",snake[snake.length-1]);
+	console.log('snakelength', snake[snake.length - 1]);
 	board.rows[snake[snake.length - 1][y]].cells[snake[snake.length - 1][x]].style.backgroundColor = '';
-	
-	
+
 	snake.pop();
-	
-	
 
 	switch (direction) {
 		case 'up':
@@ -121,11 +112,10 @@ function move() {
 	}
 
 	snake.unshift(nextHead);
-	
+
 	loose();
 
-	document.getElementById("snakelength").innerHTML = snake.length;
-	
+	document.getElementById('snakelength').innerText = snake.length;
 }
 
 //check if the user input up/down/left/right key
@@ -149,34 +139,26 @@ function checkKey(event) {
 
 //have the snake grow correctly when it eats the apple
 //if the current position of snake === current position of apple
-function tick(){
+function tick() {
+	let xPosition = snake[0][x];
+	let yPosition = snake[0][y];
 
-  let xPosition = snake[0][x];
-  let yPosition = snake[0][y];
+	let xPositionApple = apple['x'];
+	let yPositionApple = apple['y'];
 
+	if (xPosition === xPositionApple && yPosition === yPositionApple) {
+		let newTail = [ snake[snake.length - 1][x], snake[snake.length - 1][y] ];
+		newTail[0]--;
+		snake.push(newTail);
 
- let xPositionApple = apple['x'];
- let yPositionApple = apple['y'];
-
-
- if(xPosition === xPositionApple && yPosition === yPositionApple) {
-
- let newTail = [snake[snake.length-1][x],snake[snake.length-1][y]];
- newTail[0]--;
- snake.push(newTail);
- 
- createFood();
- 
- } else {
-   //do nothing
- }
-
- 
-
+		createFood();
+	} else {
+		//do nothing
+	}
 }
 function loose() {
 	if (snake[0][x] < 0 || snake[0][y] < 0 || snake[0][x] >= size || snake[0][y] >= size) {
-		document.getElementById('message').innerHTML = 'Lost';
+		document.getElementById('message').innerText = 'Lost';
 		clearInterval(timer);
 	} else {
 		drawSnake();
@@ -184,24 +166,18 @@ function loose() {
 
 	//head of the snake === any other cell in the array
 	//it is hitting itself
-	for(let i = 1; i <= snake.length-1; i++) {
-		if(snake[0][x] === snake[i][0] && snake[0][y] === snake[i][1]){
-			document.getElementById('message').innerHTML = 'Lost';
+	for (let i = 1; i <= snake.length - 1; i++) {
+		if (snake[0][x] === snake[i][0] && snake[0][y] === snake[i][1]) {
+			document.getElementById('message').innerText = 'Lost';
 			clearInterval(timer);
 		}
 	}
 }
 
-const resetButton  = document.getElementById('reset');
+const resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', function(event) {
 	state = {
 		score: 0
 	};
 	drawBoard();
 });
-
-
-
-
-
-

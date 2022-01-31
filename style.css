@@ -3,13 +3,17 @@ body{
     color:rgb(180, 60, 196);
 }
 
-#header,#score,#message,#snakelength{
+#header{
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     font-size: xx-large;
     margin: 10px;
+}
+#messages{
+    color: darkred;
+    font-weight: bold;
 }
 
 #start{
