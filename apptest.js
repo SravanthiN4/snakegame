@@ -19,11 +19,11 @@ let x = 0,
 	y = 1;
 let snake = [];
 let apple = {};
+let score = 0;
 
 const startButton = document.getElementById('start');
-
-// CREATE GAME BOARD
 const board = document.getElementById('board');
+const resetButton = document.getElementById('reset');
 
 function drawBoard() {
 	document.getElementById('board').innerHTML = '';
@@ -47,6 +47,9 @@ startButton.addEventListener('click', function(event) {
 	createSnake();
 	createFood();
 	startTimer();
+	score = 0;
+	
+	
 });
 
 //CREATE SNAKE
@@ -78,11 +81,11 @@ function startTimer() {
 	timer = setInterval(function() {
 		move();
 		tick();
-	}, 2000);
+	}, 1000);
 }
 
 function move() {
-	let nextHead = [ snake[0][x], snake[0][y] ];
+	let nextHead = [snake[0][x], snake[0][y]];
 
 	if (!snake[snake.length - 1]) {
 		board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
@@ -152,6 +155,8 @@ function tick() {
 		snake.push(newTail);
 
 		createFood();
+		score++;
+		document.getElementById("score").innerText = score;
 	} else {
 		//do nothing
 	}
@@ -174,10 +179,11 @@ function loose() {
 	}
 }
 
-const resetButton = document.getElementById('reset');
+
 resetButton.addEventListener('click', function(event) {
-	state = {
-		score: 0
-	};
+	score = 0;
 	drawBoard();
+	document.getElementById("message").innerText = "";
+	document.getElementById("score").innerText = "";
+	document.getElementById("snakelength").innerText = "";
 });

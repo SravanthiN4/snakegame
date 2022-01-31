@@ -1,6 +1,16 @@
 body{
-    background-color: rgb(83, 202, 241);
+    background-color: lightseagreen;
     color:rgb(180, 60, 196);
+}
+#board{
+	
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    
+    
 }
 
 #header{
@@ -9,39 +19,44 @@ body{
     align-items: center;
     text-align: center;
     font-size: xx-large;
-    margin: 10px;
+    margin: 1em;
 }
 #messages{
     color: darkred;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 30em;
+    
 }
 
 #start{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 150px;
-    margin-bottom: 10px;
-    width: 100px;
+    margin: 0 auto;
+    /* width: 20vw; */
     background-color: lightcoral;
-    padding:10px;
+    padding:0.5em;
     font-size: large;
     font-weight: bold;
-    color: lawngreen;
+    color: blue;
+    text-align: center;
 }
 
 #reset{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 150px;
-    margin-top: 10px;
-    width: 100px;
+    margin: 0 auto;
+    /* width: 20vw; */
     background-color: lightcoral;
-    padding:10px;
+    padding:0.5em;
     font-size: large;
     font-weight: bold;
-    color:lawngreen
+    color:blue;
+    text-align: center;
 }
 
 
@@ -56,10 +71,8 @@ td
     background:lightgray;
 }
 
-.board{
-	margin: 0px auto;
-  background:white;
-}
+
+
 
 
 
