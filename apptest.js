@@ -83,13 +83,13 @@ function startTimer() {
 	timer = setInterval(function() {
 		move();
 		tick();
-	}, 1000);
+	}, 2000);
 }
 
 
 function move() {
 	let nextHead = [snake[0][x], snake[0][y]];
-	console.log(nextHead);
+	
 	if(!snake[snake.length-1]) {
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 	}

@@ -1,11 +1,9 @@
-/* body {
-    margin: 0;
-    background-color: #ccc;
-} */
+body{
+    background-color: rgb(83, 202, 241);
+    color:rgb(180, 60, 196);
+}
 
-
-
-#header,#score{
+#header,#score,#message,#snakelength{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,14 +16,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 400px;
+    margin-left: 150px;
     margin-bottom: 10px;
+    width: 100px;
+    background-color: lightcoral;
+    padding:10px;
+    font-size: large;
+    font-weight: bold;
+    color: lawngreen;
 }
 
-body{
-    background-color: rgb(83, 202, 241);
-    color:rgb(180, 60, 196);
+#reset{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    margin-top: 10px;
+    width: 100px;
+    background-color: lightcoral;
+    padding:10px;
+    font-size: large;
+    font-weight: bold;
+    color:lawngreen
 }
+
+
 td
 {
 	width: 30px;
