@@ -54,12 +54,14 @@ startButton.addEventListener('click', function(event) {
 
 //CREATE SNAKE
 function createSnake() {
-	snake = [ [ size / 2, size / 2 ] ];
+	snake = [[ size / 2, size / 2 ]];
 	drawSnake();
 }
 function drawSnake() {
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 }
+
+
 
 //CREATE FOOD
 
@@ -68,6 +70,14 @@ function createFood() {
 		x: Math.abs(Math.floor(Math.random() * size - 1)),
 		y: Math.abs(Math.floor(Math.random() * size - 1))
 	};
+
+	for(let i = 1; i < snake.length; i++) {
+	if(apple['x'] === snake[i][x] && apple['y'] === snake[i][y]) {
+		apple['x'] = Math.abs(Math.floor(Math.random() * size - 1));
+		apple['y'] = Math.abs(Math.floor(Math.random() * size - 1));
+		i = 0;
+	}
+	}
 	drawFood();
 }
 
@@ -75,24 +85,24 @@ function drawFood() {
 	board.rows[apple['y']].cells[apple['x']].style.backgroundColor = 'red';
 }
 
+
+
 //Function to make sure Snake moves
 function startTimer() {
 	document.onkeydown = checkKey;
 	timer = setInterval(function() {
 		move();
 		tick();
-	}, 1000);
+	}, 500);
 }
 
 function move() {
 	let nextHead = [snake[0][x], snake[0][y]];
-
-	if (!snake[snake.length - 1]) {
-		board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
-	}
-
-	console.log('snakelength', snake[snake.length - 1]);
+	console.log("first",nextHead);
+	console.log("last",snake[snake.length-1]);
+	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 	board.rows[snake[snake.length - 1][y]].cells[snake[snake.length - 1][x]].style.backgroundColor = '';
+	
 
 	snake.pop();
 
@@ -150,11 +160,20 @@ function tick() {
 	let yPositionApple = apple['y'];
 
 	if (xPosition === xPositionApple && yPosition === yPositionApple) {
+		
 		let newTail = [ snake[snake.length - 1][x], snake[snake.length - 1][y] ];
-		newTail[0]--;
+		if(newTail[0] === 0 && newTail[1] === 0) {
+			newTail[0]++;
+		}else if(newTail[0] === 0){
+			newTail[1]--;
+		} else{
+			newTail[0]--;
+		}
+		
 		snake.push(newTail);
 
 		createFood();
+
 		score++;
 		document.getElementById("score").innerText = score;
 	} else {
