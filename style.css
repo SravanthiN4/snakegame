@@ -1,86 +1,92 @@
-body{
-    background-color: lightseagreen;
-    color:rgb(180, 60, 196);
-}
-#board{
-	
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    
-    
+body {
+	background-color: lightseagreen;
+	color: rgb(180, 60, 196);
 }
 
-#header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: xx-large;
-    margin: 1em;
-    color: darkorange
-}
-#messages{
-    color: darkred;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 30em;
-    
+#board {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
 }
 
-#start{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    /* width: 20vw; */
-    background-color: lightcoral;
-    padding:0.5em;
-    font-size: large;
-    font-weight: bold;
-    color: blue;
-    text-align: center;
+#header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: xx-large;
+	margin: 1em;
+	color: darkorange;
+}
+#messages {
+	color: darkred;
+	font-weight: bold;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 30em;
 }
 
-#reset{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    /* width: 20vw; */
-    background-color: lightcoral;
-    padding:0.5em;
-    font-size: large;
-    font-weight: bold;
-    color:blue;
-    text-align: center;
+#start {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	/* width: 20vw; */
+	background-color: lightcoral;
+	padding: 0.5em;
+	font-size: large;
+	font-weight: bold;
+	color: blue;
+	text-align: center;
 }
 
+#reset {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	/* width: 20vw; */
+	background-color: lightcoral;
+	padding: 0.5em;
+	font-size: large;
+	font-weight: bold;
+	color: blue;
+	text-align: center;
+}
 
-td
-{
+td {
 	width: 30px;
 	height: 30px;
 	border: solid 2px #888;
 	margin: 0px;
 	padding: 0px;
-	border-radius:5px;
-    background:lightgray;
+	border-radius: 5px;
+	background: lightgray;
 }
 
+@media screen and (min-width: 500px) {
+	#board {
+		margin: 1em 2em;
+	}
+}
 
+@media screen and (min-width: 500px) {
+	#score {
+		margin: 1em 2em;
+	}
+}
 
+@media screen and (min-width: 500px) {
+	#message {
+		margin: 1em 2em;
+	}
+}
 
-
-
-
-
-
-
-
-
-
+@media screen and (min-width: 500px) {
+	#snakelength {
+		margin: 1em 2em;
+	}
+}

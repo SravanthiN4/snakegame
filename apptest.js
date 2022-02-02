@@ -47,21 +47,16 @@ startButton.addEventListener('click', function(event) {
 	createSnake();
 	createFood();
 	startTimer();
-	score = 0;
-	
-	
 });
 
 //CREATE SNAKE
 function createSnake() {
-	snake = [[ size / 2, size / 2 ]];
+	snake = [ [ size / 2, size / 2 ] ];
 	drawSnake();
 }
 function drawSnake() {
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 }
-
-
 
 //CREATE FOOD
 
@@ -71,12 +66,12 @@ function createFood() {
 		y: Math.abs(Math.floor(Math.random() * size - 1))
 	};
 
-	for(let i = 1; i < snake.length; i++) {
-	if(apple['x'] === snake[i][x] && apple['y'] === snake[i][y]) {
-		apple['x'] = Math.abs(Math.floor(Math.random() * size - 1));
-		apple['y'] = Math.abs(Math.floor(Math.random() * size - 1));
-		i = 0;
-	}
+	for (let i = 1; i < snake.length; i++) {
+		if (apple['x'] === snake[i][x] && apple['y'] === snake[i][y]) {
+			apple['x'] = Math.abs(Math.floor(Math.random() * size - 1));
+			apple['y'] = Math.abs(Math.floor(Math.random() * size - 1));
+			i = 0;
+		}
 	}
 	drawFood();
 }
@@ -84,8 +79,6 @@ function createFood() {
 function drawFood() {
 	board.rows[apple['y']].cells[apple['x']].style.backgroundColor = 'red';
 }
-
-
 
 //Function to make sure Snake moves
 function startTimer() {
@@ -97,12 +90,11 @@ function startTimer() {
 }
 
 function move() {
-	let nextHead = [snake[0][x], snake[0][y]];
-	console.log("first",nextHead);
-	console.log("last",snake[snake.length-1]);
+	let nextHead = [ snake[0][x], snake[0][y] ];
+	console.log('first', nextHead);
+	console.log('last', snake[snake.length - 1]);
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 	board.rows[snake[snake.length - 1][y]].cells[snake[snake.length - 1][x]].style.backgroundColor = '';
-	
 
 	snake.pop();
 
@@ -160,29 +152,29 @@ function tick() {
 	let yPositionApple = apple['y'];
 
 	if (xPosition === xPositionApple && yPosition === yPositionApple) {
-		
 		let newTail = [ snake[snake.length - 1][x], snake[snake.length - 1][y] ];
-		if(newTail[0] === 0 && newTail[1] === 0) {
+		if (newTail[0] === 0 && newTail[1] === 0) {
 			newTail[0]++;
-		}else if(newTail[0] === 0){
+		} else if (newTail[0] === 0) {
 			newTail[1]--;
-		} else{
+		} else {
 			newTail[0]--;
 		}
-		
+
 		snake.push(newTail);
 
 		createFood();
 
 		score++;
-		document.getElementById("score").innerText = score;
+
+		document.getElementById('score').innerText = score;
 	} else {
 		//do nothing
 	}
 }
 function loose() {
 	if (snake[0][x] < 0 || snake[0][y] < 0 || snake[0][x] >= size || snake[0][y] >= size) {
-		document.getElementById('message').innerText = 'Lost';
+		document.getElementById('message').innerText = 'Oh no! You hit the wall!';
 		clearInterval(timer);
 	} else {
 		drawSnake();
@@ -192,17 +184,15 @@ function loose() {
 	//it is hitting itself
 	for (let i = 1; i <= snake.length - 1; i++) {
 		if (snake[0][x] === snake[i][0] && snake[0][y] === snake[i][1]) {
-			document.getElementById('message').innerText = 'Lost';
+			document.getElementById('message').innerText = 'Oh no! You ate yourself!';
 			clearInterval(timer);
 		}
 	}
 }
 
-
 resetButton.addEventListener('click', function(event) {
-	score = 0;
 	drawBoard();
-	document.getElementById("message").innerText = "";
-	document.getElementById("score").innerText = "";
-	document.getElementById("snakelength").innerText = "";
+	document.getElementById('message').innerText = '';
+	document.getElementById('score').innerText = '';
+	document.getElementById('snakelength').innerText = '';
 });
