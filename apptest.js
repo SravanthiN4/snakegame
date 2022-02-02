@@ -24,6 +24,8 @@ let score = 0;
 const startButton = document.getElementById('start');
 const board = document.getElementById('board');
 const resetButton = document.getElementById('reset');
+const slider = document.getElementById('myRange');
+const output = document.getElementById('demo');
 
 function drawBoard() {
 	document.getElementById('board').innerHTML = '';
@@ -47,6 +49,7 @@ startButton.addEventListener('click', function(event) {
 	createSnake();
 	createFood();
 	startTimer();
+	score = 0;
 });
 
 //CREATE SNAKE
@@ -74,6 +77,7 @@ function createFood() {
 		}
 	}
 	drawFood();
+	//console.log("createFood",createFood());
 }
 
 function drawFood() {
@@ -81,18 +85,23 @@ function drawFood() {
 }
 
 //Function to make sure Snake moves
+output.innerHTML = slider.value;
+slider.oninput = function() {
+	output.innerHTML = this.value;
+};
+
 function startTimer() {
 	document.onkeydown = checkKey;
 	timer = setInterval(function() {
 		move();
 		tick();
-	}, 500);
+	}, slider.value);
 }
 
 function move() {
 	let nextHead = [ snake[0][x], snake[0][y] ];
-	console.log('first', nextHead);
-	console.log('last', snake[snake.length - 1]);
+	// console.log('first', nextHead);
+	// console.log('last', snake[snake.length - 1]);
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 	board.rows[snake[snake.length - 1][y]].cells[snake[snake.length - 1][x]].style.backgroundColor = '';
 
@@ -164,6 +173,7 @@ function tick() {
 		snake.push(newTail);
 
 		createFood();
+		console.log(apple);
 
 		score++;
 
@@ -191,6 +201,7 @@ function loose() {
 }
 
 resetButton.addEventListener('click', function(event) {
+	score = 0;
 	drawBoard();
 	document.getElementById('message').innerText = '';
 	document.getElementById('score').innerText = '';

@@ -28,6 +28,10 @@ body {
 	align-items: center;
 	margin-left: 30em;
 }
+.slidecontainer{
+    color: darkred;
+    font-weight: bold;
+}
 
 #start {
 	display: flex;
