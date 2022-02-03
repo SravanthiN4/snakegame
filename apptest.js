@@ -61,35 +61,47 @@ function drawSnake() {
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 }
 
-//CREATE FOOD
 
+
+//random function to display apple randomly
+function randomAssignAppleCoordinates(){
+	return Math.abs(Math.floor(Math.random()*size-1));
+}
+
+//CREATE FOOD
 function createFood() {
 	apple = {
-		x: Math.abs(Math.floor(Math.random() * size - 1)),
-		y: Math.abs(Math.floor(Math.random() * size - 1))
+		x: randomAssignAppleCoordinates(),
+		y: randomAssignAppleCoordinates(),
 	};
+	
 
+	if(apple.x === apple.x && apple.y === apple.y){
+		apple['x'] = randomAssignAppleCoordinates();
+		apple['y'] = randomAssignAppleCoordinates();
+	}
 	for (let i = 1; i < snake.length; i++) {
 		if (apple['x'] === snake[i][x] && apple['y'] === snake[i][y]) {
-			apple['x'] = Math.abs(Math.floor(Math.random() * size - 1));
-			apple['y'] = Math.abs(Math.floor(Math.random() * size - 1));
+			apple['x'] = randomAssignAppleCoordinates();
+			apple['y'] = randomAssignAppleCoordinates();
 			i = 0;
 		}
 	}
 	drawFood();
-	//console.log("createFood",createFood());
+	
 }
 
 function drawFood() {
 	board.rows[apple['y']].cells[apple['x']].style.backgroundColor = 'red';
 }
 
-//Function to make sure Snake moves
+//create a slider to adjust the speed
 output.innerHTML = slider.value;
 slider.oninput = function() {
 	output.innerHTML = this.value;
 };
 
+//startTimer to track the snake movement
 function startTimer() {
 	document.onkeydown = checkKey;
 	timer = setInterval(function() {
@@ -98,6 +110,7 @@ function startTimer() {
 	}, slider.value);
 }
 
+//Move function to move the snake
 function move() {
 	let nextHead = [ snake[0][x], snake[0][y] ];
 	// console.log('first', nextHead);
@@ -132,7 +145,7 @@ function move() {
 	document.getElementById('snakelength').innerText = snake.length;
 }
 
-//check if the user input up/down/left/right key
+//check if the user input up/down/left/right key using keyboard
 function checkKey(event) {
 	//console.log(event.key);
 	if (event.key === 'ArrowUp') {
@@ -151,8 +164,8 @@ function checkKey(event) {
 	}
 }
 
+
 //have the snake grow correctly when it eats the apple
-//if the current position of snake === current position of apple
 function tick() {
 	let xPosition = snake[0][x];
 	let yPosition = snake[0][y];
@@ -161,7 +174,7 @@ function tick() {
 	let yPositionApple = apple['y'];
 
 	if (xPosition === xPositionApple && yPosition === yPositionApple) {
-		let newTail = [ snake[snake.length - 1][x], snake[snake.length - 1][y] ];
+		let newTail = [snake[snake.length - 1][x], snake[snake.length - 1][y] ];
 		if (newTail[0] === 0 && newTail[1] === 0) {
 			newTail[0]++;
 		} else if (newTail[0] === 0) {
@@ -172,9 +185,10 @@ function tick() {
 
 		snake.push(newTail);
 
+		//once snake found the first apple, we need to instantiate another create food
+		//so it randomly generates next apple
 		createFood();
-		console.log(apple);
-
+		
 		score++;
 
 		document.getElementById('score').innerText = score;
@@ -182,6 +196,8 @@ function tick() {
 		//do nothing
 	}
 }
+
+//Function to take care of loose conditions
 function loose() {
 	if (snake[0][x] < 0 || snake[0][y] < 0 || snake[0][x] >= size || snake[0][y] >= size) {
 		document.getElementById('message').innerText = 'Oh no! You hit the wall!';
@@ -200,6 +216,7 @@ function loose() {
 	}
 }
 
+//Reset button to reset the game without having to refresh the browser
 resetButton.addEventListener('click', function(event) {
 	score = 0;
 	drawBoard();
