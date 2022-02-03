@@ -75,22 +75,18 @@ td {
 	#board {
 		margin: 1em 2em;
 	}
-}
-
-@media screen and (min-width: 500px) {
 	#score {
 		margin: 1em 2em;
 	}
-}
-
-@media screen and (min-width: 500px) {
 	#message {
 		margin: 1em 2em;
 	}
-}
-
-@media screen and (min-width: 500px) {
 	#snakelength {
 		margin: 1em 2em;
 	}
+	.slider{
+		margin: 1em 2em;	
+	}
 }
+
+

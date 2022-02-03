@@ -61,25 +61,28 @@ function drawSnake() {
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 }
 
-
-
 //random function to display apple randomly
-function randomAssignAppleCoordinates(){
-	return Math.abs(Math.floor(Math.random()*size-1));
+function randomAssignAppleCoordinates() {
+	return Math.abs(Math.floor(Math.random() * size - 1));
 }
 
 //CREATE FOOD
 function createFood() {
+	let currX, currY;
+
+	currX = apple['x'];
+	currY = apple['y'];
+
 	apple = {
 		x: randomAssignAppleCoordinates(),
-		y: randomAssignAppleCoordinates(),
+		y: randomAssignAppleCoordinates()
 	};
-	
 
-	if(apple.x === apple.x && apple.y === apple.y){
+	if (currX === apple['x'] && currY === apple['y']) {
 		apple['x'] = randomAssignAppleCoordinates();
 		apple['y'] = randomAssignAppleCoordinates();
 	}
+
 	for (let i = 1; i < snake.length; i++) {
 		if (apple['x'] === snake[i][x] && apple['y'] === snake[i][y]) {
 			apple['x'] = randomAssignAppleCoordinates();
@@ -87,8 +90,8 @@ function createFood() {
 			i = 0;
 		}
 	}
+	//console.log(apple);
 	drawFood();
-	
 }
 
 function drawFood() {
@@ -164,7 +167,6 @@ function checkKey(event) {
 	}
 }
 
-
 //have the snake grow correctly when it eats the apple
 function tick() {
 	let xPosition = snake[0][x];
@@ -174,7 +176,7 @@ function tick() {
 	let yPositionApple = apple['y'];
 
 	if (xPosition === xPositionApple && yPosition === yPositionApple) {
-		let newTail = [snake[snake.length - 1][x], snake[snake.length - 1][y] ];
+		let newTail = [ snake[snake.length - 1][x], snake[snake.length - 1][y] ];
 		if (newTail[0] === 0 && newTail[1] === 0) {
 			newTail[0]++;
 		} else if (newTail[0] === 0) {
@@ -188,7 +190,7 @@ function tick() {
 		//once snake found the first apple, we need to instantiate another create food
 		//so it randomly generates next apple
 		createFood();
-		
+
 		score++;
 
 		document.getElementById('score').innerText = score;
