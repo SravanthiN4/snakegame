@@ -7,11 +7,8 @@
 // have the game end if the snake tries to eat itself
 
 // see how long my snake was when the game ended - length of snake
-//length of snake === display on screen
 
 // start the game over without having to reset the browser
-
-// Your code here
 
 let size = 8;
 let direction;
@@ -41,11 +38,8 @@ function drawBoard() {
 }
 drawBoard();
 
-//RESET
-
 //START BUTTON
 startButton.addEventListener('click', function(event) {
-	drawBoard();
 	createSnake();
 	createFood();
 	startTimer();
@@ -90,7 +84,7 @@ function createFood() {
 			i = 0;
 		}
 	}
-	//console.log(apple);
+	
 	drawFood();
 }
 
@@ -116,11 +110,8 @@ function startTimer() {
 //Move function to move the snake
 function move() {
 	let nextHead = [ snake[0][x], snake[0][y] ];
-	// console.log('first', nextHead);
-	// console.log('last', snake[snake.length - 1]);
 	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
 	board.rows[snake[snake.length - 1][y]].cells[snake[snake.length - 1][x]].style.backgroundColor = '';
-
 	snake.pop();
 
 	switch (direction) {
@@ -150,7 +141,7 @@ function move() {
 
 //check if the user input up/down/left/right key using keyboard
 function checkKey(event) {
-	//console.log(event.key);
+	
 	if (event.key === 'ArrowUp') {
 		direction = 'up';
 	}
@@ -185,6 +176,7 @@ function tick() {
 			newTail[0]--;
 		}
 
+		
 		snake.push(newTail);
 
 		//once snake found the first apple, we need to instantiate another create food
@@ -194,13 +186,12 @@ function tick() {
 		score++;
 
 		document.getElementById('score').innerText = score;
-	} else {
-		//do nothing
-	}
+	} 
 }
 
-//Function to take care of loose conditions
+//Function to take care of lost conditions
 function loose() {
+	//snake hits a wall
 	if (snake[0][x] < 0 || snake[0][y] < 0 || snake[0][x] >= size || snake[0][y] >= size) {
 		document.getElementById('message').innerText = 'Oh no! You hit the wall!';
 		clearInterval(timer);
@@ -208,8 +199,7 @@ function loose() {
 		drawSnake();
 	}
 
-	//head of the snake === any other cell in the array
-	//it is hitting itself
+	//snake eats itself
 	for (let i = 1; i <= snake.length - 1; i++) {
 		if (snake[0][x] === snake[i][0] && snake[0][y] === snake[i][1]) {
 			document.getElementById('message').innerText = 'Oh no! You ate yourself!';
@@ -220,9 +210,13 @@ function loose() {
 
 //Reset button to reset the game without having to refresh the browser
 resetButton.addEventListener('click', function(event) {
-	score = 0;
 	drawBoard();
+	clearInterval(timer);
 	document.getElementById('message').innerText = '';
 	document.getElementById('score').innerText = '';
 	document.getElementById('snakelength').innerText = '';
 });
+
+
+
+
