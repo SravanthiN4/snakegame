@@ -1,5 +1,5 @@
 body {
-	background-color: lightseagreen;
+	background-color: #F2CF1D;
 	color: rgb(180, 60, 196);
 }
 
@@ -8,7 +8,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 0 auto;
+	margin:0 auto;
 }
 
 #header {
@@ -18,32 +18,37 @@ body {
 	text-align: center;
 	font-size: xx-large;
 	margin: 1em;
-	color: darkorange;
+	color: #F2059F;
+	font-family: 'Architects Daughter', cursive;
 }
 #messages {
-	color: darkred;
+	color: #03909F;
 	font-weight: bold;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-left: 30em;
+	font-family: 'Syne Tactile', cursive;
+	font-size: large;
 }
 .slidecontainer{
-    color: darkred;
+    color: #03909F;
     font-weight: bold;
+	font-family: 'Syne Tactile', cursive;
+	font-size: large;
+	margin: 0 auto;
 }
 
 #start {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 0 auto;
-	/* width: 20vw; */
-	background-color: lightcoral;
+	margin:0 auto;
+	background-color: #04D94F;
 	padding: 0.5em;
 	font-size: large;
 	font-weight: bold;
-	color: blue;
+	color: #D90404;
 	text-align: center;
 }
 
@@ -51,13 +56,12 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 0 auto;
-	/* width: 20vw; */
-	background-color: lightcoral;
+	margin:0 auto;
+	background-color: #04D94F;
 	padding: 0.5em;
 	font-size: large;
 	font-weight: bold;
-	color: blue;
+	color: #D90404;
 	text-align: center;
 }
 

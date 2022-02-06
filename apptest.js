@@ -28,7 +28,7 @@ function drawBoard() {
 	document.getElementById('board').innerHTML = '';
 	for (let i = 0; i < size; i++) {
 		let row = document.createElement('tr');
-		//console.log(row);
+
 		for (let j = 0; j < size; j++) {
 			let cell = document.createElement('td');
 			row.appendChild(cell);
@@ -52,7 +52,7 @@ function createSnake() {
 	drawSnake();
 }
 function drawSnake() {
-	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
+	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = '#D50DD9';
 }
 
 //random function to display apple randomly
@@ -110,7 +110,7 @@ function startTimer() {
 //Move function to move the snake
 function move() {
 	let nextHead = [ snake[0][x], snake[0][y] ];
-	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = 'blue';
+	board.rows[snake[0][y]].cells[snake[0][x]].style.backgroundColor = '#238C2A';
 	board.rows[snake[snake.length - 1][y]].cells[snake[snake.length - 1][x]].style.backgroundColor = '';
 	snake.pop();
 
@@ -210,6 +210,7 @@ function loose() {
 
 //Reset button to reset the game without having to refresh the browser
 resetButton.addEventListener('click', function(event) {
+	score = 0;
 	drawBoard();
 	clearInterval(timer);
 	document.getElementById('message').innerText = '';
