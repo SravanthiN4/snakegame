@@ -38,6 +38,13 @@ body {
 	font-size: large;
 	margin: 0 auto;
 }
+#note{
+	color: #03909F;
+	font-weight: bold;
+	font-family: 'Syne Tactile', cursive;
+	font-size: small;
+	margin-top: 0.01em;
+}
 
 #start {
 	display: flex;
